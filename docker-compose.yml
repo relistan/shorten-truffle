@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  scylladb:
+    image: scylladb/scylla
+    environment:
+      LOCALSTACK_SERVICES: "s3"
+      GATEWAY_LISTEN: "0.0.0.0:4566"
+    ports:
+      - 9042:9042

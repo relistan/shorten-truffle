@@ -1,0 +1,4 @@
+#!/bin/sh
+
+mvn -Dmaven.repo.local=jars dependency:resolve
+mvn -Dmaven.repo.local=jars dependency:build-classpath -Dmdep.outputFile=cp.txt
