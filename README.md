@@ -42,6 +42,20 @@ You may start the application like so:
 That will start the Spark framework and Jetty webserver and begin serving
 traffic.
 
+Starting Cassandra
+------------------
+
+Before running the service locally, you will need to start ScyllaDB. This is
+done with `docker-compose up -d` or `podman compose up -d`.
+
+I prefer `podman` and you will find that the Makefile commands use `podman`.
+
+Once the service is up, you need to install the schema. Make may do this with:
+
+```
+make schema
+```
+
 Configuration
 -------------
 
