@@ -10,6 +10,9 @@ This application is written in Ruby but uses the Java libraries for a number of
 functions, including the Sinatra-like Spark web framework (and Jetty webserver)
 and the Datastax Cassandra driver and query tooling.
 
+Basic throughput testing locally shows that this service can handle about
+8,000-10,000 requests per second.
+
 Running It
 ----------
 
