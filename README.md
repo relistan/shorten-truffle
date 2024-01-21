@@ -10,6 +10,34 @@ This application is written in Ruby but uses the Java libraries for a number of
 functions, including the Sinatra-like Spark web framework (and Jetty webserver)
 and the Datastax Cassandra driver and query tooling.
 
+Running It
+----------
+
+As an experiment in building a TruffleRuby application, I experimented with how
+to handle Java dependencies. It turns out to be pretty nice to manage them with
+Maven.  Hence it is required to have `mvn` in your path in order to manage the
+dependencies.  This is required in order to download the appropriate jars to
+run the application.
+
+You may install and manage the dependencies by running:
+```
+./deps
+```
+
+This will install all the required libraries and overwrite the `cp.txt` file,
+which contains the classpath, constructed by Maven.
+
+Running the service requires having the classpath loaded. To make that easy, I
+have included a script to wrap TruffleRuby with the correct classpath settings.
+You may start the application like so:
+
+```
+./run serve.rb
+```
+
+That will start the Spark framework and Jetty webserver and begin serving
+traffic.
+
 Configuration
 -------------
 
