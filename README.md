@@ -19,6 +19,10 @@ Maven.  Hence it is required to have `mvn` in your path in order to manage the
 dependencies.  This is required in order to download the appropriate jars to
 run the application.
 
+I have included a `Makefile` to make some of this easier, and it has proper
+help output if you simply run `make`. If you'd rather invoke the scripts
+directly, you can use the following commands.
+
 You may install and manage the dependencies by running:
 ```
 ./deps
