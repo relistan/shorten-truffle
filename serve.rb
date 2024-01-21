@@ -185,14 +185,19 @@ class Server
 
   def handle_get_redirect(req, res)
     code = req.params('code')
+    res.header('content-type', 'application/json')
 
     unless valid_code?(code)
       res.status(400)
-      res.header('content-type', 'application/json')
       return { error: 'invalid code supplied' }.to_json
     end
 
     url = @store.get_link_by_code(code)
+    if url == ''
+      res.status(404)
+      return { error: 'code not found' }.to_json
+    end
+
     res.header('location', url)
     res.status(302)
     ''
