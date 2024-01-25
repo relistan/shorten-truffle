@@ -7,11 +7,16 @@ generate the same code for the same URL as long as it has not expired.
 Expiration is handled by Cassandra TTLs on the records.
 
 This application is written in Ruby but uses the Java libraries for a number of
-functions, including the Sinatra-like Spark web framework (and Jetty webserver)
-and the Datastax Cassandra driver and query tooling.
+functions, including the Sinatra-like Spark web framework (and Jetty
+webserver), the Datastax Cassandra driver and query tooling, and the Bloom
+filter from the Guava library.
 
 Basic throughput testing locally shows that this service can handle about
-8,000-10,000 requests per second.
+15k-17k *shorten* requests per second. After warmup on my machine I can manage
+nearly 17k/second running the default settings for Spark, backed by Scylladb.
+Not too bad for under 300 lines of code.
+
+![](./images/performance.png)
 
 Running It
 ----------

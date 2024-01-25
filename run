@@ -2,4 +2,5 @@
 
 SCRIPT=$1
 CLASSPATH=`cat cp.txt`
+#ruby --cputracer --inspect --vm.classpath=$CLASSPATH $SCRIPT
 ruby --vm.classpath=$CLASSPATH $SCRIPT
