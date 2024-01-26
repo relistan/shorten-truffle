@@ -1,6 +1,5 @@
-Java.import('java.security.MessageDigest')
-
 require 'securerandom'
+require 'digest'
 
 module Shorten
   # A ShortLink represents the forward and backward lookups for a
@@ -28,8 +27,7 @@ module Shorten
     end
 
     def self.hash(url)
-      bytes = MessageDigest.getInstance('MD5').digest(url.bytes).to_a
-      bytes.pack('c*').unpack('H*').first
+      Digest::MD5.new.update(url).hexdigest
     end
 
     def self.url_for(short_code, base_url)
