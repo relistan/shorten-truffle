@@ -16,7 +16,7 @@ module Shorten
 	  end
 
 	  def put(*args)
-	    @filters.first.put(*args)
+	    @filters.last.put(*args)
 	  end
 
 	  def mightContain(*args)
@@ -37,7 +37,7 @@ module Shorten
 	      loop do
 	        sleep(resize_interval)
 	        # If accuracy is getting bad, we'll have to add one
-	        next unless @filters.first.expectedFpp > 0.1 # matches create Fpp
+	        next unless @filters.last.expectedFpp > 0.1 # matches create Fpp
 
 	        puts "Adding bloom filter. Total size #{@filters.size}"
 	        @last_size *= 2
