@@ -21,11 +21,11 @@ Not too bad for under 300 lines of code.
 Running It
 ----------
 
-As an experiment in building a TruffleRuby application, I experimented with how
-to handle Java dependencies. It turns out to be pretty nice to manage them with
-Maven.  Hence it is required to have `mvn` in your path in order to manage the
-dependencies.  This is required in order to download the appropriate jars to
-run the application.
+As an proof-of-concept in building a TruffleRuby application, I experimented
+with how to handle Java dependencies. It turns out to be pretty nice to manage
+them with Maven.  Hence it is required to have `mvn` in your path in order to
+manage the dependencies.  This is required in order to download the appropriate
+jars to run the application.
 
 I have included a `Makefile` to make some of this easier, and it has proper
 help output if you simply run `make`. If you'd rather invoke the scripts
