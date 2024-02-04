@@ -121,3 +121,17 @@ for the corresponding short code. On a missing code, an error is returned:
 ```json
 {"error":"code not found"}
 ```
+
+Tests
+-----
+
+Because the classloader needs to have the correct jars in the classpath, we
+need to make sure to invoke `rspec` in a vm that has been set up properly. The
+provided local copy of the `rspec` CLI will do that. You may invoke it with:
+
+```
+./run rspec
+```
+
+Arguments are passed properly through `run` so you can provide the script names
+and the line numbers like you normall would when testing.

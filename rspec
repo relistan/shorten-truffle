@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+
+# Local copy of the rspec CLI script to be invoked with `./run rspec`
+
+require 'rspec/core'
+
+RSpec::Core::Runner.run(ARGV, $stderr, $stdout)

@@ -3,8 +3,9 @@ require 'digest'
 
 module Shorten
   # A ShortLink represents the forward and backward lookups for a
-  # shortened URL mapped to a random base62-ish string.
-  Shorten::ShortLink = Struct.new(:shortened_url, :url, :short_code, :hash)
+  # shortened URL mapped to a random base62-ish string. Shortened
+  # URL
+  ShortLink = Struct.new(:shortened_url, :url, :short_code, :hash)
 
   # Bag of methods for handling the business of shortening links
   class Shorten::LinkShortener

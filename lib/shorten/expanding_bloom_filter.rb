@@ -9,8 +9,9 @@ module Shorten
 	# should taper off heavily.
 	class ExpandingBloomFilter
 	  def initialize(base_size:, resize_interval:, max_length:)
-	    @filters = [create_filter(base_size)]
-	    @last_size = base_size
+	    @filters    = [create_filter(base_size)]
+	    @last_size  = base_size
+      @max_length = max_length
 
 	    Thread.new { maintain_filter(resize_interval, max_length) }
 	  end
@@ -24,6 +25,19 @@ module Shorten
 	    @filters.any? { |f| f.mightContain(*args) }
 	  end
 
+    def resize
+	    puts "Adding bloom filter. Total size #{@filters.size}"
+	    @last_size *= 2
+
+	    new_filter = create_filter(@last_size)
+	    @filters = if @filters.size > @max_length
+	      puts 'Dropping oldest bloom filter'
+	      @filters[1..-1] << new_filter
+	    else
+	      @filters << new_filter
+	    end
+    end
+
 	  private
 	    def create_filter(size)
 	      BloomFilter.create(
@@ -36,19 +50,11 @@ module Shorten
 
 	      loop do
 	        sleep(resize_interval)
+
 	        # If accuracy is getting bad, we'll have to add one
 	        next unless @filters.last.expectedFpp > 0.1 # matches create Fpp
 
-	        puts "Adding bloom filter. Total size #{@filters.size}"
-	        @last_size *= 2
-
-	        new_filter = create_filter(@last_size)
-	        @filters = if @filters.size > max_length
-	          puts 'Dropping oldest bloom filter'
-	          @filters[1..-1] << new_filter
-	        else
-	          @filters << new_filter
-	        end
+          resize
 	      end
 	    end
 	end
